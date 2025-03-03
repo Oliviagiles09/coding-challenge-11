@@ -74,3 +74,27 @@ const book = this.books.find(book => book.isbn === isbn);
     console.log("Book or borrower not found")
   }
 }
+// Task 5
+returnBook(borrowerId, isbn) {
+const borrower = this.borrowers.find(b => b.borrowerId === borrowerId);
+  const book = this.books.find(b => b.isbn === isbn);
+  if (book) {
+    book.updatedCopies(1);
+    if (borrower) {
+      borrower.returnBook(book);
+    }
+  }
+}
+const library = new Library();
+library.addBook(book1);
+library.addBorrower(borrower1);
+library.listBooks();
+
+library.lendbook(201, 123456);
+console.log(book1.getDetails());
+console.log(borrower1.borrowedBooks);
+
+library.returnBook(201, 123456);
+console.log(book1.getDetails());
+
+console.log(borrower1.borrowedBooks);
